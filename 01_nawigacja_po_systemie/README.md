@@ -1,10 +1,10 @@
                                   ##Nawigacja po systemie:## 
 
--pwd            ### pokazuje, w jakim katalogu jesteś###
--cd /etc        ### zmiana katalogu###
--cd ~           ### przechodzi do katalogu domowego uzytkownika###
--ls -l          ### wyświetla pliki z uprawnieniami###
--tree           ### pokazuje strukturę katalogów###
+-pwd            ### pokazuje, w jakim katalogu jesteś###  
+-cd /etc        ### zmiana katalogu###    
+-cd ~           ### przechodzi do katalogu domowego uzytkownika###  
+-ls -l          ### wyświetla pliki z uprawnieniami###  
+-tree           ### pokazuje strukturę katalogów###  
 
 
  ## Czego się nauczyłem: ##

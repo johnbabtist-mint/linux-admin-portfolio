@@ -1,13 +1,16 @@
-Nawigacja po systemie: 
+**Nawigacja po systemie:** 
 
 pwd       
-# pokazuje, w jakim katalogu jesteś
+### pokazuje, w jakim katalogu jesteś
 cd /etc    
-# zmiana katalogu
+### zmiana katalogu
+cd ~ 
+### prowadzi do katalogu głównego
 ls -l      
-# wyświetla pliki z uprawnieniami
+### wyświetla pliki z uprawnieniami
 tree       
-# pokazuje strukturę katalogów
+### pokazuje strukturę katalogów
+
 
   Czego się nauczyłem: 
   -rozumiem co oznaczają : /home, /usr, /etc

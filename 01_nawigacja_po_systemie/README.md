@@ -1,4 +1,4 @@
-                                  ##Nawigacja po systemie:## 
+  27.10.2025                                ##Nawigacja po systemie:## 
 
 -pwd      -   pokazuje, w jakim katalogu jesteś  
 -cd /etc  -   zmiana katalogu      

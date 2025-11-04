@@ -23,9 +23,9 @@ Data: 04.11.2025
 
 # Przykładowe grupy systemowe #  
 Grupa	Opis
-lpadmin-	drukarki
-plugdev-dostęp do urządzeń USB
-adm	-dostęp do logów systemowych
+lpadmin-	drukarki  
+plugdev-dostęp do urządzeń USB  
+adm	-dostęp do logów systemowych  
 sudo-	możliwość wykonywania poleceń jako administrator  
 
 

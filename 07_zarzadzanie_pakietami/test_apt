@@ -1,0 +1,53 @@
+
+---
+
+## 📄 `07_zarzadzanie_pakietami/test_apt.md`
+
+```markdown
+# 🧩 Test APT – praktyczne sytuacje
+
+### Zadanie 1
+Po `sudo apt update` widzisz komunikat:  
+
+NO_PUBKEY ABC123...
+
+➡️ Co robisz?
+✅ Dodajesz brakujący klucz GPG:
+
+sudo curl -fsSLo /usr/share/keyrings/nazwa.gpg URL_DO_KLUCZA
+sudo apt update
+
+Zadanie 2
+
+apt install zgłasza brak repozytorium.
+➡️ Co sprawdzasz?
+✅ Ścieżkę do plików:
+
+ls /etc/apt/sources.list.d/
+
+
+Jeśli brak .list, dodaj go ręcznie.
+
+Zadanie 3
+
+System działa wolno po apt upgrade.
+➡️ Co robisz?
+✅ Czyścisz stare zależności:
+
+sudo apt autoremove
+sudo apt clean
+
+Zadanie 4
+
+Chcesz zainstalować nowy program z zewnętrznego repozytorium.
+➡️ Jak to robisz?
+✅ Dodajesz repo i klucz GPG:
+
+sudo curl -fsSLo /usr/share/keyrings/program.gpg URL_DO_KLUCZA
+echo "deb [signed-by=/usr/share/keyrings/program.gpg] URL stable main" | sudo tee /etc/apt/sources.list.d/program.list
+sudo apt update
+sudo apt install program
+
+
+💡 Wniosek:
+APT to nie tylko instalacja, ale pełna kontrola nad repozytoriami, bezpieczeństwem i czystością systemu.

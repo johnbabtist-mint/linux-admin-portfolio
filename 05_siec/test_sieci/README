@@ -1,0 +1,33 @@
+## Test sieci Babtista  ##  
+
+
+### Zadanie 1
+`ip a` pokazuje 169.254.x.x  
+➡️ Komputer nie dostał IP z DHCP.  
+Sprawdź połączenie (Wi-Fi/kabel) i czy DHCP działa w routerze.
+
+---
+
+### Zadanie 2
+`ping 192.168.1.1` nie działa, ale telefon ma Internet.  
+➡️ Problem lokalny na tym komputerze (karta sieciowa, kabel, Wi-Fi).
+
+---
+
+### Zadanie 3
+`ping 8.8.8.8` działa, `ping google.com` nie.  
+➡️ Problem z DNS.  
+Sprawdź `cat /etc/resolv.conf` i wpisz `nameserver 1.1.1.1`.
+
+---
+
+### Zadanie 4
+`ping 8.8.8.8` nie działa z routera.  
+➡️ Problem z połączeniem z operatorem (WAN, PPPoE, światłowód).  
+Sprawdź kabel WAN, logowanie PPPoE lub skontaktuj się z dostawcą.
+
+---
+
+### Zadanie 5
+`ip route` nie pokazuje „default via ...”  
+➡️ Brak bramy domyślnej – komputer nie wie, którędy wyjść do Internetu.

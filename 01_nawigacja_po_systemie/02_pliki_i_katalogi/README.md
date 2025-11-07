@@ -26,4 +26,4 @@ sudo shutdown -h now -               zamyka system
 -  POTRAFIĘ SPRAWDZIĆ ZAWARTOŚĆ PLIKU W RÓŻNYCH TRYBACH (cat , less ,head, tail)  
 -  WIEM JAK ŚLEDZIĆ ZMIANY W CZASIE RZECZYWISTYM W LOGACH ( tail -f)
 -  POTRAFIĘ BEZPIECZNIE ZAMKNĄĆ SYSTEM Z LINI POLECEŃ ( sudo shutdown -h now)
--  
+   

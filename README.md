@@ -6,7 +6,7 @@ Każdy katalog przedstawia inny dział – od podstaw terminala po zarządzanie 
 ---
 
 ## 📘 O mnie
-👋 Nazywam się **John Babtist** i uczę się administracji systemami Linux.  
+👋 Nazywam się **Konrad** i uczę się administracji systemami Linux.  
 To repozytorium dokumentuje moją praktyczną naukę — polecenia, skrypty, konfiguracje i eksperymenty.
 
 Moim celem jest zdobycie umiejętności potrzebnych do pracy jako **Junior Linux Administrator**  

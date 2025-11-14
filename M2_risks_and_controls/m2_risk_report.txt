@@ -1,0 +1,85 @@
+# M2 - Raport Ryzyka: Zarządzanie uprawnieniami w systemie Linux
+
+## 1. Cel raportu
+Celem raportu jest podsumowanie audytu uprawnień plików i katalogów w systemie Linux,
+przeprowadzonego w ramach modułu 2. Analiza obejmuje wykrywanie potencjalnie niebezpiecznych
+uprawnień (777, g+w, o+w) oraz ocenę poziomu ryzyka.
+
+---
+
+## 2. Wyniki audytu
+
+### 2.1 Pliki z uprawnieniami 777
+Komenda:
+`find / -type f -perm 777`
+
+Wynik:
+- Brak plików z uprawnieniami 777.
+
+**Ocena:** Pozytywna. System nie zawiera plików o pełnym dostępie dla wszystkich użytkowników.
+
+---
+
+### 2.2 Katalogi z uprawnieniami 777
+Znalezione:
+- /home/johnbabtist/.linuxmint/mintupdate
+- /tmp/mintUpdate
+
+**Analiza:**
+- `/tmp/mintUpdate` – normalne zachowanie, katalogi w /tmp często mają 777 i używają sticky bit.
+- `~/.linuxmint/mintupdate` – katalog aplikacji GUI, niskie ryzyko, nie wpływa na system.
+
+**Ocena:** Niskie ryzyko.
+
+---
+
+### 2.3 Pliki zapisywalne przez grupę lub innych (g+w, o+w)
+
+Znalezione pliki (pierwsze 10):
+- /home/johnbabtist/.venv/sgpt/bin/pip3.12
+- /home/johnbabtist/.venv/sgpt/bin/pip
+- /home/johnbabtist/.venv/sgpt/bin/markdown-it
+- /home/johnbabtist/.venv/sgpt/bin/httpx
+- /home/johnbabtist/.venv/sgpt/bin/pip3
+- /home/johnbabtist/.venv/sgpt/bin/tqdm
+- /home/johnbabtist/.venv/sgpt/bin/distro
+- /home/johnbabtist/.venv/sgpt/bin/identify-cli
+- /home/johnbabtist/.venv/sgpt/bin/openai
+- /home/johnbabtist/.venv/sgpt/bin/pygmentize
+
+**Analiza:**
+- Pliki należą do lokalnego środowiska Python `.venv`.
+- Nie są to pliki systemowe (żadne z /usr, /etc, /var).
+- Uprawnienia wynikają z działania pip i są normalne.
+- Nie mają wpływu na bezpieczeństwo systemu.
+
+**Ocena:** Brak ryzyka systemowego.
+
+---
+
+## 3. Wnioski końcowe
+
+- System nie zawiera krytycznych błędów uprawnień.
+- Nie wykryto plików ani katalogów z wysokim poziomem ryzyka.
+- Katalogi 777 są zgodne z rolą (głównie /tmp oraz lokalne aplikacje graficzne).
+- Pliki zapisywalne przez grupę lub innych występują wyłącznie w środowisku Python `.venv`, co nie stanowi zagrożenia.
+
+**Ogólna ocena bezpieczeństwa:**  
+✔ Pozytywna  
+✔ System jest skonfigurowany zgodnie z dobrymi praktykami  
+✔ Brak krytycznych podatności związanych z uprawnieniami
+
+---
+
+## 4. Rekomendacje
+
+- Kontynuować okresowe audyty uprawnień (`find / -perm`).
+- Utrzymywać zasady minimalnych uprawnień (principle of least privilege).
+- Regularnie monitorować katalog `/tmp` oraz własne środowiska Python.
+- Dbać o właściwe prawa do plików prywatnych (600) oraz systemowych (644, 755).
+
+---
+
+## 5. Podpis
+Raport wygenerowano w ramach kursu:
+**Google Cybersecurity Certificate — Moduł 2: Zarządzanie uprawnieniami w Linux**

@@ -1,0 +1,139 @@
+# M2 – Ćwiczenie 1: Analiza uprawnień Linux
+
+## 1. Uprawnienia katalogu domowego (~)
+## 2. Analiza uprawnień katalogu domowego
+
+drwxr-x--- 26 johnbabtist johnbabtist 4096 lis 14 05:18 /home/johnbabtist
+
+- d = katalog
+- rwx = właściciel ma pełne prawa (czytać, pisać, wykonywać)
+- r-x = grupa może czytać i wykonywać (wejść), ale nie pisać
+- --- = inni nie mają żadnych praw
+
+Te uprawnienia są prawidłowe dla katalogu użytkownika.
+
+
+## 3. Uprawnienia pliku test.txt
+
+Aktualne uprawnienia:
+-rw-rw-r-- 1 johnbabtist johnbabtist 0 lis 14 06:34 test.txt
+
+Analiza:
+- -   = zwykły plik
+- rw- = właściciel może czytać i pisać
+- rw- = grupa może czytać i pisać
+- r-- = inni mogą tylko czytać
+
+Wnioski:
+Obecne uprawnienia są zbyt szerokie, ponieważ grupa ma prawo zapisu. 
+Bezpieczniejsze ustawienie to chmod 600 lub chmod 644.
+
+### 3.1 Wyjaśnienie uprawnień chmod 644
+
+Uprawnienia po zastosowaniu chmod 644:
+
+-rw-r--r--
+
+Analiza:
+- rw-  = właściciel może czytać i pisać do pliku
+- r--  = grupa może tylko czytać
+- r--  = inni mogą tylko czytać
+
+Zastosowania:
+- pliki konfiguracyjne systemu (np. /etc/hostname)
+- pliki logów
+- dokumenty, które nie zawierają poufnych danych
+- pliki, które programy muszą odczytać, ale nie modyfikować
+
+Dlaczego 644 jest bezpieczniejsze niż 664?
+- grupa **nie może** już pisać do pliku
+- minimalizuje ryzyko przypadkowej zmiany pliku
+- jest zgodne z dobrymi praktykami systemów Linux
+
+Dlaczego nie używać 644 do plików prywatnych?
+- inni mogą czytać, więc wrażliwe dane powinny mieć chmod 600.
+
+### 3.2 Uprawnienia po zastosowaniu chmod 600
+
+Aktualne uprawnienia:
+-rw------- 1 johnbabtist johnbabtist 0 ... test.txt
+
+Analiza:
+- rw- = właściciel może czytać i pisać
+- --- = grupa nie ma dostępu
+- --- = inni nie mają dostępu
+
+Zastosowania chmod 600:
+- pliki prywatne
+- hasła
+- klucze SSH (id_rsa)
+- raporty bezpieczeństwa
+- dane wrażliwe
+
+Dlaczego 600 jest najbezpieczniejsze?
+- tylko właściciel ma dostęp
+- minimalizuje ryzyko wycieku danych
+- zalecane przez standardy bezpieczeństwa (NIST, CIS)
+
+### 3.3 Uprawnienia po zastosowaniu chmod 644
+
+Aktualne uprawnienia:
+-rw-r--r-- 1 johnbabtist johnbabtist 0 test.txt
+
+Analiza:
+- rw-  = właściciel może czytać i pisać
+- r--  = grupa może tylko czytać
+- r--  = inni mogą tylko czytać
+
+Zastosowania chmod 644:
+- pliki konfiguracyjne systemu
+- pliki logów
+- dokumenty
+- pliki, które muszą być odczytywane przez system lub inne procesy
+
+Dlaczego 644 jest bezpieczniejsze niż 664?
+- grupa NIE może pisać do pliku, więc zmniejsza to ryzyko uszkodzenia pliku
+- inni nadal mogą odczytać — co jest potrzebne w wielu plikach systemowych
+
+
+### 3.4 Uprawnienia po zastosowaniu chmod 700
+
+Aktualne uprawnienia:
+-rwx------ 1 johnbabtist johnbabtist 0 test.txt
+
+Analiza:
+- rwx = właściciel może czytać, pisać i wykonywać
+- --- = grupa nie ma żadnych praw
+- --- = inni nie mają żadnych praw
+
+Zastosowania chmod 700:
+- katalogi prywatne (np. ~/.ssh)
+- skrypty, które tylko właściciel ma wykonywać
+- dane poufne, które wymagają wykonania
+- katalogi użytkownika z danymi prywatnymi
+
+Dlaczego 700 jest bezpieczne?
+- tylko właściciel ma pełny dostęp
+- inni nie mogą ani odczytać, ani wejść, ani wykonać
+
+
+### 3.5 Uprawnienia po zastosowaniu chmod 755
+
+Aktualne uprawnienia:
+-rwxr-xr-x 1 johnbabtist johnbabtist 0 test.txt
+
+Analiza:
+- rwx = właściciel może czytać, pisać i wykonywać
+- r-x = grupa może czytać i wykonywać
+- r-x = inni mogą czytać i wykonywać
+
+Zastosowania chmod 755:
+- katalogi systemowe (/usr/bin, /bin, /etc)
+- programy wykonywane przez wszystkich użytkowników
+- skrypty udostępniane publicznie
+- statyczne strony i pliki webowe
+
+Dlaczego 755 jest używane w systemie?
+- użytkownicy muszą móc uruchamiać programy
+- inni nie mogą modyfikować plików systemowych
+- bezpieczne i standardowe ustawienie w całym Linuxie

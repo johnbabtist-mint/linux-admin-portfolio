@@ -1,0 +1,25 @@
+### Pliki zapisywalne przez grupę lub innych (aktualny wynik)
+
+Znalezione pliki:
+- /home/johnbabtist/.venv/sgpt/bin/pip3.12
+- /home/johnbabtist/.venv/sgpt/bin/pip
+- /home/johnbabtist/.venv/sgpt/bin/markdown-it
+- /home/johnbabtist/.venv/sgpt/bin/httpx
+- /home/johnbabtist/.venv/sgpt/bin/pip3
+- /home/johnbabtist/.venv/sgpt/bin/tqdm
+- /home/johnbabtist/.venv/sgpt/bin/distro
+- /home/johnbabtist/.venv/sgpt/bin/identify-cli
+- /home/johnbabtist/.venv/sgpt/bin/openai
+- /home/johnbabtist/.venv/sgpt/bin/pygmentize
+
+Analiza:
+- Wszystkie znalezione pliki znajdują się w katalogu użytkownika i należą do środowiska Python `.venv`.
+- Jest to normalne zachowanie – pliki instalowane w wirtualnym środowisku Python często mają prawa do zapisu dla grupy.
+- Te pliki nie znajdują się w katalogach systemowych (/usr, /etc, /var), więc nie stanowią ryzyka dla systemu.
+- `.venv` działa jako izolowane środowisko, przeznaczone do pracy użytkownika, a nie jako element infrastruktury systemowej.
+- Brak dowodów na to, że pliki te mogą wpłynąć na uprawnienia roota lub systemowe procesy.
+
+Wnioski:
+- Wynik audytu: pozytywny.
+- Nie znaleziono plików o wysokim ryzyku (np. plików systemowych z o+w lub g+w).
+- Wykryte pliki są zgodne z oczekiwanym zachowaniem środowiska Python.

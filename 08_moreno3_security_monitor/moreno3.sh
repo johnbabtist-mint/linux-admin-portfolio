@@ -1,7 +1,7 @@
 #!/bin/bash
 
 LOG_FILE="/var/log/auth.log"
-OUTPUT="/var/log/moreno3"
+OUTPUT="$HOME/moreno3_security_report.log"
 
 THRESHOLD_LOW=1
 THRESHOLD_MED=5
@@ -9,7 +9,7 @@ THRESHOLD_HIGH=10
 
 declare -A ATTEMPTS
 
-# --- Zbieranie nieudanych logowań SSH (brute-force) ---
+# --- Zbieranie nieudanych logowań SSH ---
 while read -r line; do
     ip=$(echo "$line" | awk '{print $(NF-3)}')
     [[ $ip =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]] || continue
@@ -17,9 +17,9 @@ while read -r line; do
 done < <(grep "Failed password" "$LOG_FILE")
 
 # --- Zbieranie udanych logowań ---
-SUCCESS_LOGINS=$(grep "Accepted password" "$LOG_FILE" | awk '{print $(NF-3)}' | sort -u)
+SUCCESS_LOGINS=$(grep "Accepted" "$LOG_FILE" | awk '/from/ {print $(NF-3)}' | sort -u)
 
-# --- Sortowanie IP wg liczby prób (malejąco) ---
+# --- Sortowanie IP wg liczby prób ---
 SORTED=$(for ip in "${!ATTEMPTS[@]}"; do
     echo "${ATTEMPTS[$ip]} $ip"
 done | sort -rn)
@@ -34,7 +34,7 @@ while read -r entry; do
 
     [[ -z "$IP" ]] && continue
 
-    # --- Poziomy zagrożenia ---
+    # --- Poziomy ryzyka ---
     if (( COUNT >= THRESHOLD_HIGH )); then
         LEVEL="KRYTYCZNE"
     elif (( COUNT >= THRESHOLD_MED )); then

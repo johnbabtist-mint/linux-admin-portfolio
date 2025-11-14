@@ -1,0 +1,33 @@
+# Moduł 1 – Ćwiczenie 2: Wstępna analiza logów systemowych
+
+## 1. Użyte polecenie
+sudo tail -n 20 /var/log/auth.log
+(lub syslog, jeśli auth.log niedostępny)
+
+## 2. Surowe logi (fragment)
+2025-11-14T04:15:01.822491+01:00 johnny CRON[3749]: pam_unix(cron:session): session opened for user johnbabtist(uid=1000) by johnbabtist(uid=0)
+2025-11-14T04:15:01.842829+01:00 johnny CRON[3749]: pam_unix(cron:session): session closed for user johnbabtist
+2025-11-14T04:17:01.831876+01:00 johnny CRON[3759]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-11-14T04:17:01.834987+01:00 johnny CRON[3759]: pam_unix(cron:session): session closed for user root
+2025-11-14T04:20:01.842458+01:00 johnny CRON[3772]: pam_unix(cron:session): session opened for user johnbabtist(uid=1000) by johnbabtist(uid=0)
+2025-11-14T04:20:01.861009+01:00 johnny CRON[3772]: pam_unix(cron:session): session closed for user johnbabtist
+2025-11-14T04:25:01.858076+01:00 johnny CRON[3785]: pam_unix(cron:session): session opened for user johnbabtist(uid=1000) by johnbabtist(uid=0)
+2025-11-14T04:25:01.868252+01:00 johnny CRON[3785]: pam_unix(cron:session): session closed for user johnbabtist
+2025-11-14T04:30:01.875627+01:00 johnny CRON[4097]: pam_unix(cron:session): session opened for user johnbabtist(uid=1000) by johnbabtist(uid=0)
+2025-11-14T04:30:01.894054+01:00 johnny CRON[4097]: pam_unix(cron:session): session closed for user johnbabtist
+2025-11-14T04:33:06.116071+01:00 johnny sudo: johnbabtist : TTY=pts/1 ; PWD=/home/johnbabtist ; USER=root ; COMMAND=/usr/bin/tail -n 20 /var/log/auth.log
+2025-11-14T04:33:06.136417+01:00 johnny sudo: pam_unix(sudo:session): session opened for user root(uid=0) by johnbabtist(uid=1000)
+2025-11-14T04:33:06.137791+01:00 johnny sudo: pam_unix(sudo:session): session closed for user root
+2025-11-14T04:35:01.888032+01:00 johnny CRON[4111]: pam_unix(cron:session): session opened for user johnbabtist(uid=1000) by johnbabtist(uid=0)
+2025-11-14T04:35:01.906798+01:00 johnny CRON[4111]: pam_unix(cron:session): session closed for user johnbabtist
+2025-11-14T04:40:01.901049+01:00 johnny CRON[4126]: pam_unix(cron:session): session opened for user johnbabtist(uid=1000) by johnbabtist(uid=0)
+2025-11-14T04:40:01.920125+01:00 johnny CRON[4126]: pam_unix(cron:session): session closed for user johnbabtist
+2025-11-14T04:45:01.914270+01:00 johnny CRON[4130]: pam_unix(cron:session): session opened for user johnbabtist(uid=1000) by johnbabtist(uid=0)
+2025-11-14T04:45:01.933050+01:00 johnny CRON[4130]: pam_unix(cron:session): session closed for user johnbabtist
+2025-11-14T04:45:28.273892+01:00 johnny sudo: johnbabtist : TTY=pts/0 ; PWD=/home/johnbabtist ; USER=root ; COMMAND=/usr/bin/tail -n 20 /var/log/auth.log
+
+## 3. Wstępna analiza
+Logi pokazują normalną aktywność użytkownika. Widać otwarcie i zamknięcie sesji sudo, co oznacza, że użytkownik johnbabtist wykonał polecenie z uprawnieniami root. Nie ma żadnych prób włamania, brute force, invalid user ani failed password. Wszystkie wpisy są zgodne z normalnym użyciem systemu.
+
+## 4. Wnioski
+Brak podejrzanej aktywności. Logi wskazują na prawidłowe działanie sudo oraz standardowe operacje użytkownika.

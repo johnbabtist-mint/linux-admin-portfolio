@@ -1,0 +1,17 @@
+# Moduł 1 – Raport bezpieczeństwa (SOC)
+
+## 1. Opis zdarzenia
+Przeprowadzono standardowy przegląd logów systemowych w celu sprawdzenia nieautoryzowanej aktywności.
+
+## 2. Dane z logów (fragment)
+2025-11-14T04:14:14.660966+01:00 johnny sudo: johnbabtist : TTY=pts/0 ; PWD=/home/johnbabtist ; USER=root ; COMMAND=/usr/bin/ss -tulpn
+2025-11-14T04:14:14.661829+01:00 johnny sudo: pam_unix(sudo:session): session opened for user root(uid=0) by johnbabtist(uid=1000)
+2025-11-14T04:14:14.684912+01:00 johnny sudo: pam_unix(sudo:session): session closed for user root
+2025-11-14T04:15:01.822491+01:00 johnny CRON[3749]: pam_unix(cron:session): session opened for user johnbabtist(uid=1000) by johnbabtist(uid=0)
+2025-11-14T04:15:01.842829+01:00 johnny CRON[3749]: pam_unix(cron:session): session closed for user johnbabtist
+
+## 3. Analiza
+Logi przedstawiają standardową aktywność administratora systemu. Widać otworzenie i zamknięcie sesji sudo oraz wykonanie polecenia z uprawnieniami root. Nie występują żadne próby nieudanych logowań, brute force ani podejrzane konta użytkowników.
+
+## 4. Wnioski
+Brak oznak nieautoryzowanej aktywności. Wszystkie zdarzenia są zgodne z normalnym użyciem systemu przez użytkownika z uprawnieniami sudo. System działa prawidłowo, a logi nie wskazują na próby włamania ani naruszenia bezpieczeństwa.

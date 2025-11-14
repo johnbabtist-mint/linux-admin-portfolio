@@ -3,6 +3,9 @@
 LOG_FILE="/var/log/auth.log"
 OUTPUT="$HOME/moreno3_security_report.log"
 
+# --- Filtr logów tylko z dzisiejszego dnia ---
+LOG_TODAY=$(date "+%b %_d")
+
 THRESHOLD_LOW=1
 THRESHOLD_MED=5
 THRESHOLD_HIGH=10
@@ -14,10 +17,10 @@ while read -r line; do
     ip=$(echo "$line" | awk '{print $(NF-3)}')
     [[ $ip =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]] || continue
     ((ATTEMPTS["$ip"]++))
-done < <(grep "Failed password" "$LOG_FILE")
+done < <(grep "$LOG_TODAY" "$LOG_FILE" | grep "Failed password")
 
 # --- Zbieranie udanych logowań ---
-SUCCESS_LOGINS=$(grep "Accepted" "$LOG_FILE" | awk '/from/ {print $(NF-3)}' | sort -u)
+SUCCESS_LOGINS=$(grep "$LOG_TODAY" "$LOG_FILE" | grep "Accepted" | awk '/from/ {print $(NF-3)}' | sort -u)
 
 # --- Sortowanie IP wg liczby prób ---
 SORTED=$(for ip in "${!ATTEMPTS[@]}"; do

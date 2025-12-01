@@ -71,3 +71,5 @@ Zachęcam do forka i nauki razem! 😊
 Autor: johnbabtist-mint
 
 📅 Ostatnia aktualizacja: listopad 2025
+ pierwszy commit z mojego laptopa (johnbabtist).
+01.12.2025
